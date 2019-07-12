@@ -46,7 +46,7 @@ app.use('/', home);
 app.use('/home', home);
 app.use('/call', call);
 app.use('/dashboard', dashboard);
-app.use('/tickets', tickets);
+// app.use('/tickets', tickets);
 app.use('/token', token);
 
 // catch 404 and forward to error handler

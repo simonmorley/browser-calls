@@ -103,19 +103,28 @@ function initNewTicketForm() {
 
   // button handler
   formEl.find("[type='button']").click(function(e) {
-    $.ajax({
-        url: '/tickets/new',
-        type: 'post',
-        data: formEl.serialize()
-    })
-    .done(function(){
-      showNotification("Support ticket was created successfully.", "success")
-      // clear form
-      formEl.find("input[type=text], textarea").val("");
-    })
-    .fail(function(res) {
-      showNotification("Support ticket request failed. " + res.responseText, "danger")
-    });
+    console.log(formEl.find("input[type=text], text").val())
+    let num = formEl.find("input[type=text], text").val();
+    if (!num) {
+      alert()
+      return;
+    }
+
+    callCustomer(num);
+
+    // $.ajax({
+    //     url: '/tickets/new',
+    //     type: 'post',
+    //     data: formEl.serialize()
+    // })
+    // .done(function(){
+    //   showNotification("Support ticket was created successfully.", "success")
+    //   // clear form
+    //   formEl.find("input[type=text], textarea").val("");
+    // })
+    // .fail(function(res) {
+    //   showNotification("Support ticket request failed. " + res.responseText, "danger")
+    // });
   });
 }
 
