@@ -21,8 +21,8 @@ block content
     if (errors.length > 0)
       .alert.alert-danger !{errors}
     h2#support Contact support
-    p.lead
-      | Talk with one of our support agents right now by clicking the "Call Support" button on the right. If you can"t talk now, fill out a support ticket and an agent will call you later.
+    p Office number: 07480803877
+
     .row
       .col-md-6.col-md-pull-6
         form(class="new-ticket")
@@ -31,7 +31,13 @@ block content
             input.form-control(type='text', name="phone_number", placeholder='+16887665773')
           button.btn.btn-primary.btn-lg.btn-block(type='button') Submit ticket
           button.btn.btn-lg.btn-danger.hangup-button(disabled="", onclick="hangUp()") Hang up
-            
-      small.pull-right
-        | Header photo courtesy
-        a(href="https://www.flickr.com/photos/tink20seven/4654348885/") David Sachs via Flickr
+    .row
+      .col-md-6.col-md-pull-6
+        form(class="new-sms")
+          .form-group
+            label Number:
+            input.form-control(type='text', name="number", placeholder='+447777777777')
+          .form-group
+            label Body:
+            input.form-control(type='text', name="body", value='Hey, it\'s Simon from Perched. Just tried calling, give me a ring when you have a moment.')
+          button.btn.btn-primary.btn-lg.btn-block(type='button') Send SMS

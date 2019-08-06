@@ -23,6 +23,7 @@ $(document).ready(function() {
   });
 
   initNewTicketForm();
+  initNewSmsForm();
 });
 
 /* Callback to let us know Twilio Client is ready */
@@ -87,7 +88,7 @@ function callCustomer(phoneNumber) {
   Twilio.Device.connect(params);
 }
 
-/* Call the support_agent from the home page */
+/esponsethe support_agent from the home page */
 function callSupport() {
   Twilio.Device.connect();
 }
@@ -111,20 +112,30 @@ function initNewTicketForm() {
     }
 
     callCustomer(num);
+  });
+}
 
-    // $.ajax({
-    //     url: '/tickets/new',
-    //     type: 'post',
-    //     data: formEl.serialize()
-    // })
-    // .done(function(){
-    //   showNotification("Support ticket was created successfully.", "success")
-    //   // clear form
-    //   formEl.find("input[type=text], textarea").val("");
-    // })
-    // .fail(function(res) {
-    //   showNotification("Support ticket request failed. " + res.responseText, "danger")
-    // });
+function initNewSmsForm() {
+  var formEl = $(".new-sms");
+  var buttonEl = formEl.find(".btn.btn-primary");
+
+  // button handler
+  formEl.find("[type='button']").click(function(e) {
+    let b = formEl.find("input[name=body]");
+    let n = formEl.find("input[name=number]");
+
+    let body = b.val();
+    let number = n.val();
+
+    if (!number || !body) {
+      alert()
+      return;
+    }
+
+    $.post("/sms/send", {number: number, body: body}, function(data) {
+      n.val('')
+      b.val('')
+    });
   });
 }
 
